@@ -28,4 +28,16 @@ public class DataServiceProvider implements DataService{
     public List<Order> getAllOrder() {
         return serviceProvider.getAllOrder();
     }
+
+    public int addObject(Object obj) {
+        return serviceProvider.addObject(obj);
+    }
+
+    public int deleteObject(Object obj) {
+        return serviceProvider.deleteObject(obj);
+    }
+
+    public int updateObject(Object obj) {
+        return serviceProvider.updateObject(obj);
+    }
 }

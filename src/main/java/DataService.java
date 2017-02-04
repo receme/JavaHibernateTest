@@ -11,4 +11,7 @@ public interface DataService {
     Order getOrder(int orderId);
     List<Product> getAllProduct();
     List<Order> getAllOrder();
+    int addObject(Object obj);
+    int deleteObject(Object obj);
+    int updateObject(Object obj);
 }
