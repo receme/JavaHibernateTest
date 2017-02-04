@@ -12,7 +12,10 @@
         <property name="connection.username">receme</property>
         <property name="connection.password">1</property>
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-        <mapping resource="product.hbm.xml"/>
+        <!--<property name="show_sql">true</property>-->
+
+        <mapping class="Persistents.Product"/>
+        <mapping class="Persistents.Order"/>
     </session-factory>
 
 </hibernate-configuration>

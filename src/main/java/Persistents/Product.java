@@ -1,23 +1,32 @@
 package Persistents;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  * Created by receme on 1/31/17.
  */
+
+@Entity
+@Table(name = "product")
 public class Product {
 
+    @Id
     private int id;
     private String name;
     private String price;
+    private String description;
     private String date;
 
-    public Product(){
+    public Product() {
 
     }
 
-    public Product(int id, String name, String price, String date) {
-        this.id = id;
+    public Product(String name, String price, String description, String date) {
         this.name = name;
         this.price = price;
+        this.description = description;
         this.date = date;
     }
 
@@ -52,4 +61,14 @@ public class Product {
     public void setDate(String date) {
         this.date = date;
     }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }
+
+
