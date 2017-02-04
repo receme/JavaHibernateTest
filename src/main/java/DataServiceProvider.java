@@ -40,4 +40,8 @@ public class DataServiceProvider implements DataService{
     public int updateObject(Object obj) {
         return serviceProvider.updateObject(obj);
     }
+
+    public void closeSession() {
+        serviceProvider.closeSession();
+    }
 }

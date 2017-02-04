@@ -14,7 +14,7 @@ public class Order {
     @Id
     private int id;
     private String date;
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "product_order")
     private List<Product> product = new ArrayList<Product>();
 

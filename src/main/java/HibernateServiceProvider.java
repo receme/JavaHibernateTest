@@ -14,9 +14,10 @@ import java.util.List;
  */
 public class HibernateServiceProvider implements ServiceProvider {
 
-    private String hibernateConfigFileName;
+    private String hibernateConfigFileName = null;
     private SessionFactory sessionFactory;
     private static HibernateServiceProvider provider;
+    private Session session;
 
     private HibernateServiceProvider() {
 
@@ -25,7 +26,10 @@ public class HibernateServiceProvider implements ServiceProvider {
         if (hibernateConfigFileName == null || hibernateConfigFileName.length()==0) {
             configuration = configuration.configure();
         }
-        configuration = configuration.configure(hibernateConfigFileName);
+        else{
+            configuration = configuration.configure(hibernateConfigFileName);
+        }
+
         sessionFactory = configuration.buildSessionFactory();
     }
 
@@ -43,15 +47,13 @@ public class HibernateServiceProvider implements ServiceProvider {
     }
 
     public Product getProduct(int productId) {
-        Session session = sessionFactory.openSession();
+        session = sessionFactory.openSession();
         Product product = session.get(Product.class,productId);
-        session.close();
-
         return product;
     }
 
     public Order getOrder(int orderId) {
-        Session session = sessionFactory.openSession();
+        session = sessionFactory.openSession();
         Order order = session.get(Order.class,orderId);
         session.close();
 
@@ -59,7 +61,7 @@ public class HibernateServiceProvider implements ServiceProvider {
     }
 
     public List<Product> getAllProduct() {
-        Session session = sessionFactory.openSession();
+        session = sessionFactory.openSession();
         List<Product> products =  session.createQuery("from Product",Product.class).list();
         session.close();
 
@@ -67,7 +69,7 @@ public class HibernateServiceProvider implements ServiceProvider {
     }
 
     public List<Order> getAllOrder() {
-        Session session = sessionFactory.openSession();
+        session = sessionFactory.openSession();
         List<Order> orders = session.createQuery("from Order",Order.class).list();
         session.close();
 
@@ -75,7 +77,7 @@ public class HibernateServiceProvider implements ServiceProvider {
     }
 
     public int addObject(Object obj) {
-        Session session = null;
+        session = null;
         int result = 0;
         try{
 
@@ -99,7 +101,7 @@ public class HibernateServiceProvider implements ServiceProvider {
 
     public int deleteObject(Object obj) {
 
-        Session session = null;
+        session = null;
         int result = 0;
 
         try{
@@ -123,7 +125,7 @@ public class HibernateServiceProvider implements ServiceProvider {
 
     public int updateObject(Object obj) {
 
-        Session session = null;
+        session = null;
         int result = 0;
 
         try{
@@ -144,4 +146,12 @@ public class HibernateServiceProvider implements ServiceProvider {
 
         return result;
     }
+
+    public void closeSession() {
+        if(session!=null){
+            session.close();
+        }
+    }
+
+
 }

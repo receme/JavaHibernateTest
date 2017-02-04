@@ -14,4 +14,5 @@ public interface DataService {
     int addObject(Object obj);
     int deleteObject(Object obj);
     int updateObject(Object obj);
+    void closeSession();
 }
