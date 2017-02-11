@@ -1,4 +1,4 @@
-import Persistents.Order;
+import Persistents.Deal;
 import Persistents.Product;
 
 import java.util.List;
@@ -17,7 +17,7 @@ public class DataServiceProvider implements DataService{
         return serviceProvider.getProduct(productId);
     }
 
-    public Order getOrder(int orderId) {
+    public Deal getOrder(int orderId) {
         return serviceProvider.getOrder(orderId);
     }
 
@@ -25,7 +25,7 @@ public class DataServiceProvider implements DataService{
         return serviceProvider.getAllProduct();
     }
 
-    public List<Order> getAllOrder() {
+    public List<Deal> getAllOrder() {
         return serviceProvider.getAllOrder();
     }
 

@@ -1,4 +1,4 @@
-import Persistents.Order;
+import Persistents.Deal;
 import Persistents.Product;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -52,12 +52,12 @@ public class HibernateServiceProvider implements ServiceProvider {
         return product;
     }
 
-    public Order getOrder(int orderId) {
+    public Deal getOrder(int orderId) {
         session = sessionFactory.openSession();
-        Order order = session.get(Order.class,orderId);
+        Deal deal = session.get(Deal.class,orderId);
         session.close();
 
-        return  order;
+        return deal;
     }
 
     public List<Product> getAllProduct() {
@@ -68,12 +68,12 @@ public class HibernateServiceProvider implements ServiceProvider {
         return  products;
     }
 
-    public List<Order> getAllOrder() {
+    public List<Deal> getAllOrder() {
         session = sessionFactory.openSession();
-        List<Order> orders = session.createQuery("from Order",Order.class).list();
+        List<Deal> deals = session.createQuery("from Deal", Deal.class).list();
         session.close();
 
-        return  orders;
+        return deals;
     }
 
     public int addObject(Object obj) {

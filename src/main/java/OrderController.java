@@ -1,4 +1,4 @@
-import Persistents.Order;
+import Persistents.Deal;
 import Persistents.Product;
 
 import java.util.List;
@@ -14,12 +14,12 @@ public class OrderController {
         this.serviceProvider = serviceProvider;
     }
 
-    public void addOrder(Order order) throws Exception {
-        int result = serviceProvider.addObject(order);
+    public void addOrder(Deal deal) throws Exception {
+        int result = serviceProvider.addObject(deal);
         serviceProvider.closeSession();
 
         if (result == 0) {
-            throw new Exception("Error occured. Order is not placed");
+            throw new Exception("Error occured. Deal is not placed");
         }
     }
 
@@ -32,12 +32,12 @@ public class OrderController {
         }
     }
 
-    public void deleteOrder(Order order) throws Exception {
-        int result = serviceProvider.deleteObject(order);
+    public void deleteOrder(Deal deal) throws Exception {
+        int result = serviceProvider.deleteObject(deal);
         serviceProvider.closeSession();
 
         if (result == 0) {
-            throw new Exception("Error occured. Order is not deleted");
+            throw new Exception("Error occured. Deal is not deleted");
         }
     }
 
@@ -59,26 +59,26 @@ public class OrderController {
         }
     }
 
-    public Order getOrder(int orderId) throws Exception {
-        Order order = serviceProvider.getOrder(orderId);
+    public Deal getOrder(int orderId) throws Exception {
+        Deal deal = serviceProvider.getOrder(orderId);
         serviceProvider.closeSession();
-        if (order == null) {
-            throw new Exception("Error occured. Failed to fetch order");
+        if (deal == null) {
+            throw new Exception("Error occured. Failed to fetch deal");
         }
 
-        return order;
+        return deal;
     }
 
-    public List<Order> getAllOrder() throws Exception {
+    public List<Deal> getAllOrder() throws Exception {
 
-        List<Order> orders = serviceProvider.getAllOrder();
+        List<Deal> deals = serviceProvider.getAllOrder();
         serviceProvider.closeSession();
 
-        if(orders==null){
-            throw new Exception("Error occured. Failed to fetch orders");
+        if(deals ==null){
+            throw new Exception("Error occured. Failed to fetch deals");
         }
 
-        return orders;
+        return deals;
     }
 
     public Product getProduct(int productId) throws Exception {

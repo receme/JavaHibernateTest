@@ -1,8 +1,6 @@
 package Persistents;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Created by receme on 1/31/17.
@@ -13,7 +11,8 @@ import javax.persistence.Table;
 public class Product {
 
     @Id
-    private int id;
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    private int product_id;
     private String name;
     private String price;
     private String description;
@@ -31,11 +30,11 @@ public class Product {
     }
 
     public int getId() {
-        return id;
+        return product_id;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.product_id = id;
     }
 
     public String getName() {

@@ -1,4 +1,4 @@
-import Persistents.Order;
+import Persistents.Deal;
 import Persistents.Product;
 
 import java.util.List;
@@ -12,10 +12,10 @@ public class PrinterManager {
         System.out.println(message);
     }
 
-    public static void printOrder(Order order){
-        System.out.println("Order date: "+order.getDate());
-        System.out.println("Product included in order:");
-        List<Product> products = order.getProducts();
+    public static void printOrder(Deal deal){
+        System.out.println("Deal date: "+ deal.getDate());
+        System.out.println("Product included in deal:");
+        List<Product> products = deal.getProducts();
         printAllProduct(products);
     }
 

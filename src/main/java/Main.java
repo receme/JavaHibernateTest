@@ -1,4 +1,4 @@
-import Persistents.Order;
+import Persistents.Deal;
 import Persistents.Product;
 
 import java.util.*;
@@ -29,11 +29,11 @@ public class Main {
 
             switch (option){
                 case 1:
-                    System.out.println("Enter order id:");
+                    System.out.println("Enter deal id:");
                     int orderId = sc.nextInt();
                     try {
-                        Order order = orderController.getOrder(orderId);
-                        PrinterManager.printOrder(order);
+                        Deal deal = orderController.getOrder(orderId);
+                        PrinterManager.printOrder(deal);
 
                     } catch (Exception e) {
                         PrinterManager.printMessage(e.getMessage());
@@ -41,10 +41,11 @@ public class Main {
                     break;
                 case 2:
                     try {
-                        List<Order> orders = orderController.getAllOrder();
-                        for(int i=0;i<orders.size();i++){
-                            Order order = orders.get(i);
-                            PrinterManager.printOrder(order);
+                        List<Deal> deals = orderController.getAllOrder();
+
+                        for(int i = 0; i< deals.size(); i++){
+                            Deal deal = deals.get(i);
+                            PrinterManager.printOrder(deal);
                         }
                     } catch (Exception e) {
                         PrinterManager.printMessage(e.getMessage());
@@ -59,9 +60,10 @@ public class Main {
                     }
                     break;
                 case 4:
-                    PrinterManager.printMessage("Order details:");
-                    Order order = new Order();
-                    order.setDate(new Date().toString());
+                    PrinterManager.printMessage("Deal details:");
+                    Deal deal = new Deal();
+                    deal.setDate(new Date().toString());
+                    Deal tempDeal = deal;
                     PrinterManager.printMessage("How many product will be added?");
                     int productCount = sc.nextInt();
 
@@ -77,10 +79,11 @@ public class Main {
                             i--;
                         }
                     }
-                    order.setProducts(products);
+                    deal.setProducts(products);
 
                     try {
-                        orderController.addOrder(order);
+                        orderController.addOrder(deal);
+
                     } catch (Exception e) {
                         PrinterManager.printMessage(e.getMessage());
                     }

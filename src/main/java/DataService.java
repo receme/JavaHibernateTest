@@ -1,4 +1,4 @@
-import Persistents.Order;
+import Persistents.Deal;
 import Persistents.Product;
 
 import java.util.List;
@@ -8,9 +8,9 @@ import java.util.List;
  */
 public interface DataService {
     Product getProduct(int productId);
-    Order getOrder(int orderId);
+    Deal getOrder(int orderId);
     List<Product> getAllProduct();
-    List<Order> getAllOrder();
+    List<Deal> getAllOrder();
     int addObject(Object obj);
     int deleteObject(Object obj);
     int updateObject(Object obj);
