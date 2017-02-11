@@ -5,12 +5,15 @@ import java.util.*;
 
 public class Main {
 
+    static OrderController orderController;
+    static Scanner sc;
+
     public static void main(String[] args) {
 
         DataServiceProvider dataServiceProvider = new DataServiceProvider(HibernateServiceProvider.getInstance());
-        OrderController orderController = new OrderController(dataServiceProvider);
+        orderController = new OrderController(dataServiceProvider);
 
-        Scanner sc = new Scanner(System.in);
+        sc = new Scanner(System.in);
         System.out.println("___Choose Option___");
         System.out.println("1. View specific order");
         System.out.println("2. View all orders");
@@ -28,79 +31,32 @@ public class Main {
             int option = sc.nextInt();
 
             switch (option){
-                case 1:
-                    System.out.println("Enter deal id:");
-                    int orderId = sc.nextInt();
-                    try {
-                        Deal deal = orderController.getOrder(orderId);
-                        PrinterManager.printOrder(deal);
-
-                    } catch (Exception e) {
-                        PrinterManager.printMessage(e.getMessage());
-                    }
+                case Option.VIEW_ORDER:
+                    startOption_viewSpecificOrder();
                     break;
-                case 2:
-                    try {
-                        List<Deal> deals = orderController.getAllOrder();
-
-                        for(int i = 0; i< deals.size(); i++){
-                            Deal deal = deals.get(i);
-                            PrinterManager.printOrder(deal);
-                        }
-                    } catch (Exception e) {
-                        PrinterManager.printMessage(e.getMessage());
-                    }
+                case Option.VIEW_ALL_ORDERS:
+                    startOption_viewAllOrders();
                     break;
-                case 3:
-                    try {
-                        List<Product> products = orderController.getAllProducts();
-                        PrinterManager.printAllProduct(products);
-                    } catch (Exception e) {
-                        PrinterManager.printMessage(e.getMessage());
-                    }
+                case Option.VIEW_ALL_PRODUCTS:
+                    startOption_viewAllProducts();
+
                     break;
-                case 4:
-                    PrinterManager.printMessage("Deal details:");
-                    Deal deal = new Deal();
-                    deal.setDate(new Date().toString());
-                    Deal tempDeal = deal;
-                    PrinterManager.printMessage("How many product will be added?");
-                    int productCount = sc.nextInt();
-
-                    List<Product> products = new ArrayList<Product>();
-                    for(int i=0;i<productCount;i++){
-                        PrinterManager.printMessage("Enter product id to add:");
-                        int pId = sc.nextInt();
-                        try {
-                            Product product = orderController.getProduct(pId);
-                            products.add(product);
-                        } catch (Exception e) {
-                            PrinterManager.printMessage(e.getMessage());
-                            i--;
-                        }
-                    }
-                    deal.setProducts(products);
-
-                    try {
-                        orderController.addOrder(deal);
-
-                    } catch (Exception e) {
-                        PrinterManager.printMessage(e.getMessage());
-                    }
+                case Option.ADD_ORDER:
+                    startOption_addOrder();
                     break;
-                case 5:
+                case Option.DELETE_ORDER:
                     PrinterManager.printMessage("Not implemented");
                     break;
-                case 6:
+                case Option.ADD_PRODUCT:
                     PrinterManager.printMessage("Not implemented");
                     break;
-                case 7:
+                case Option.DELETE_PRODUCT:
                     PrinterManager.printMessage("Not implemented");
                     break;
-                case 8:
+                case Option.UPDATE_PRODUCT:
                     PrinterManager.printMessage("Not implemented");
                     break;
-                case 0:
+                case Option.EXIT:
                     exit = 1;
                     break;
             }
@@ -113,5 +69,70 @@ public class Main {
 
         System.out.println("Exiting.....");
 
+    }
+
+
+    private static void startOption_viewSpecificOrder() {
+        System.out.println("Enter deal id:");
+        int orderId = sc.nextInt();
+        try {
+            Deal deal = orderController.getOrder(orderId);
+            PrinterManager.printOrder(deal);
+
+        } catch (Exception e) {
+            PrinterManager.printMessage(e.getMessage());
+        }
+    }
+
+    private static void startOption_viewAllOrders() {
+        try {
+            List<Deal> deals = orderController.getAllOrder();
+
+            for(int i = 0; i< deals.size(); i++){
+                Deal deal = deals.get(i);
+                PrinterManager.printOrder(deal);
+            }
+        } catch (Exception e) {
+            PrinterManager.printMessage(e.getMessage());
+        }
+    }
+
+    private static void startOption_viewAllProducts() {
+        try {
+            List<Product> products = orderController.getAllProducts();
+            PrinterManager.printAllProduct(products);
+        } catch (Exception e) {
+            PrinterManager.printMessage(e.getMessage());
+        }
+    }
+
+    private static void startOption_addOrder() {
+        PrinterManager.printMessage("Deal details:");
+        Deal deal = new Deal();
+        deal.setDate(new Date().toString());
+        Deal tempDeal = deal;
+        PrinterManager.printMessage("How many product will be added?");
+        int productCount = sc.nextInt();
+
+        List<Product> products = new ArrayList<Product>();
+        for(int i=0;i<productCount;i++){
+            PrinterManager.printMessage("Enter product id to add:");
+            int pId = sc.nextInt();
+            try {
+                Product product = orderController.getProduct(pId);
+                products.add(product);
+            } catch (Exception e) {
+                PrinterManager.printMessage(e.getMessage());
+                i--;
+            }
+        }
+        deal.setProducts(products);
+
+        try {
+            orderController.addOrder(deal);
+
+        } catch (Exception e) {
+            PrinterManager.printMessage(e.getMessage());
+        }
     }
 }
