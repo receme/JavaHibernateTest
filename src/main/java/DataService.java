@@ -12,7 +12,7 @@ public interface DataService {
     List<Product> getAllProduct();
     List<Deal> getAllOrder();
     int addObject(Object obj);
-    int deleteObject(Object obj);
+    int deleteObject(int objId);
     int updateObject(Object obj);
     void closeSession();
 }

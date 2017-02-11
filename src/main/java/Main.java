@@ -45,7 +45,7 @@ public class Main {
                     startOption_addOrder();
                     break;
                 case Option.DELETE_ORDER:
-                    PrinterManager.printMessage("Not implemented");
+                    startOption_deleteOrder();
                     break;
                 case Option.ADD_PRODUCT:
                     PrinterManager.printMessage("Not implemented");
@@ -134,5 +134,17 @@ public class Main {
         } catch (Exception e) {
             PrinterManager.printMessage(e.getMessage());
         }
+    }
+
+    private static void startOption_deleteOrder() {
+
+        System.out.println("Enter deal id:");
+        int orderId = sc.nextInt();
+        try {
+            orderController.deleteOrder(orderId);
+        } catch (Exception e) {
+            PrinterManager.printMessage(e.getMessage());
+        }
+
     }
 }

@@ -99,7 +99,7 @@ public class HibernateServiceProvider implements ServiceProvider {
         return result;
     }
 
-    public int deleteObject(Object obj) {
+    public int deleteObject(int objId) {
 
         session = null;
         int result = 0;
@@ -107,7 +107,9 @@ public class HibernateServiceProvider implements ServiceProvider {
         try{
             session = sessionFactory.openSession();
             Transaction t = session.beginTransaction();
-            session.delete(obj);
+            Deal deal = new Deal();
+            deal.setId(objId);
+            session.delete(deal);
             t.commit();
 
             result = 1;

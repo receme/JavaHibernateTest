@@ -32,8 +32,8 @@ public class OrderController {
         }
     }
 
-    public void deleteOrder(Deal deal) throws Exception {
-        int result = serviceProvider.deleteObject(deal);
+    public void deleteOrder(int dealId) throws Exception {
+        int result = serviceProvider.deleteObject(dealId);
         serviceProvider.closeSession();
 
         if (result == 0) {
@@ -41,8 +41,8 @@ public class OrderController {
         }
     }
 
-    public void deleteProduct(Product product) throws Exception {
-        int result = serviceProvider.deleteObject(product);
+    public void deleteProduct(int objId) throws Exception {
+        int result = serviceProvider.deleteObject(objId);
         serviceProvider.closeSession();
 
         if (result == 0) {
@@ -54,7 +54,7 @@ public class OrderController {
         int result = serviceProvider.updateObject(product);
         serviceProvider.closeSession();
 
-        if(result == 0){
+        if (result == 0) {
             throw new Exception("Error occured. Could not update product");
         }
     }
@@ -74,7 +74,7 @@ public class OrderController {
         List<Deal> deals = serviceProvider.getAllOrder();
         serviceProvider.closeSession();
 
-        if(deals ==null){
+        if (deals == null) {
             throw new Exception("Error occured. Failed to fetch deals");
         }
 
@@ -85,7 +85,7 @@ public class OrderController {
         Product product = serviceProvider.getProduct(productId);
         serviceProvider.closeSession();
 
-        if(product == null){
+        if (product == null) {
             throw new Exception("Error occured. Failed to fetch product");
         }
 
@@ -97,7 +97,7 @@ public class OrderController {
         List<Product> products = serviceProvider.getAllProduct();
         serviceProvider.closeSession();
 
-        if(products==null){
+        if (products == null) {
             throw new Exception("Error occured. Failed to fetch products");
         }
 

@@ -33,8 +33,8 @@ public class DataServiceProvider implements DataService{
         return serviceProvider.addObject(obj);
     }
 
-    public int deleteObject(Object obj) {
-        return serviceProvider.deleteObject(obj);
+    public int deleteObject(int objId) {
+        return serviceProvider.deleteObject(objId);
     }
 
     public int updateObject(Object obj) {
