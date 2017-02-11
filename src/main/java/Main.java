@@ -27,10 +27,10 @@ public class Main {
 
         int exit = 0;
 
-        while(true){
+        while (true) {
             int option = sc.nextInt();
 
-            switch (option){
+            switch (option) {
                 case Option.VIEW_ORDER:
                     startOption_viewSpecificOrder();
                     break;
@@ -48,20 +48,20 @@ public class Main {
                     startOption_deleteOrder();
                     break;
                 case Option.ADD_PRODUCT:
-                    PrinterManager.printMessage("Not implemented");
+                    startOption_addProduct();
                     break;
                 case Option.DELETE_PRODUCT:
-                    PrinterManager.printMessage("Not implemented");
+                    startOption_deleteProduct();
                     break;
                 case Option.UPDATE_PRODUCT:
-                    PrinterManager.printMessage("Not implemented");
+                    startOption_updateProduct();
                     break;
                 case Option.EXIT:
                     exit = 1;
                     break;
             }
 
-            if(exit == 1){
+            if (exit == 1) {
                 break;
             }
 
@@ -70,7 +70,6 @@ public class Main {
         System.out.println("Exiting.....");
 
     }
-
 
     private static void startOption_viewSpecificOrder() {
         System.out.println("Enter deal id:");
@@ -147,4 +146,36 @@ public class Main {
         }
 
     }
+
+    private static void startOption_addProduct() {
+        PrinterManager.printMessage("Enter product details: (name,price,description)");
+        sc.nextLine();
+        String name = sc.nextLine();
+        String price = sc.nextLine();
+        String desc = sc.nextLine();
+        String date = new Date().toString();
+
+        Product product = new Product(name,price,desc,date);
+
+        try {
+            orderController.addProduct(product);
+        } catch (Exception e) {
+            PrinterManager.printMessage(e.getMessage());
+        }
+    }
+
+    private static void startOption_deleteProduct() {
+//        PrinterManager.printMessage("Enter product id:");
+//        int productId = sc.nextInt();
+//        try {
+//            orderController.deleteProduct(productId);
+//        } catch (Exception e) {
+//            PrinterManager.printMessage(e.getMessage());
+//        }
+    }
+
+    private static void startOption_updateProduct() {
+       PrinterManager.printMessage("Not implemented");
+    }
+
 }
