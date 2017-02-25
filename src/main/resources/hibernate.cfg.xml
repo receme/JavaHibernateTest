@@ -7,11 +7,11 @@
 
     <session-factory>
         <property name="hbm2ddl.auto">update</property>
-        <property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
-        <property name="connection.url">jdbc:mysql://localhost:8889/redq</property>
+        <property name="dialect">org.hibernate.dialect.PostgreSQL82Dialect</property>
+        <property name="connection.url">jdbc:postgresql://localhost:5432/redq</property>
         <property name="connection.username">receme</property>
         <property name="connection.password">1</property>
-        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="connection.driver_class">org.postgresql.Driver</property>
         <property name="show_sql">true</property>
 
         <mapping class="Persistents.Product"/>
